@@ -1,0 +1,10 @@
+Youtube : 
+- https://www.youtube.com/watch?v=TUq0i9umnWY&list=PLR6sk8oLroe3dsQbT12XffgmIaPwrPAE7&index=3
+- https://www.youtube.com/watch?v=2ucJovR7KOM
+
+Article : 
+- https://www.commandprompt.com/education/how-to-get-the-age-in-years-in-postgresql/#:~:text=In%20PostgreSQL%2C%20the%20AGE()%20function%20must%20be%20used%20with,a%20year%2C%20month%2C%20etc.
+- https://www.commandprompt.com/education/how-to-concatenate-a-string-and-a-number-in-postgresql/#:~:text=%2D%20Multiple%20strings%20can%20be%20concatenated,the%20strings%20with%20a%20number.
+
+Documentation:
+- https://sequelize.org/docs/v6/core-concepts/raw-queries/
