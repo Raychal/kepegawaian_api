@@ -1,0 +1,108 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Employee {
+  id         String     @id @default(cuid())
+  profile EmployeeProfile?
+  family EmployeeFamily[]
+  education Education[]
+  nik        String?
+  name        String?
+  is_active  Boolean
+  start_date DateTime @db.Date
+  end_date   DateTime @db.Date
+  created_by String?
+  updated_by String?
+  created_at DateTime
+  updated_at DateTime
+}
+
+model EmployeeProfile {
+  id               String     @id @default(cuid())
+  employee         Employee @relation(fields: [employee_id], references: [id], onDelete: Cascade)
+  employee_id      String     @unique
+  place_of_birth   String?
+  date_of_birth    DateTime? @db.Date
+  gender           Gender
+  is_married       Boolean
+  prof_pict        String?
+  created_by       String?
+  updated_by       String?
+  created_at DateTime
+  updated_at DateTime
+}
+
+model EmployeeFamily {
+  id               String     @id @default(cuid())
+  employee         Employee @relation(fields: [employee_id], references: [id], onDelete: Cascade)
+  employee_id      String
+  name             String?
+  identifier       String?
+  job              String?
+  place_of_birth   String?
+  date_of_birth    DateTime? @db.Date
+  religion         Religion
+  is_life          Boolean
+  is_divorced      Boolean
+  relation_status  ReligionStatus
+  created_by       String?
+  updated_by       String?
+  created_at DateTime
+  updated_at DateTime
+}
+
+model Education {
+  id               String     @id @default(cuid())
+  employee         Employee @relation(fields: [employee_id], references: [id], onDelete: Cascade)
+  employee_id      String
+  name             String
+  level            Level
+  description      String
+  created_by       String
+  updated_by       String
+  created_at DateTime
+  updated_at DateTime
+}
+
+enum Gender {
+  Laki @map("Laki-laki")
+  Perempuan
+}
+
+enum Religion {
+  Islam
+  Katolik
+  Buda
+  Protestan
+  Konghucu
+}
+
+enum ReligionStatus {
+  Suami
+  Istri
+  Anak
+  AnakSambung @map("Anak Sambung")
+}
+
+enum Level {
+  Tk
+  Sd
+  Smp
+  Sma
+  Strata1 @map("Strata 1")
+  Strata2 @map("Strata 2")
+  Docter
+  Profesor
+}
